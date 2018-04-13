@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
-#include <err.h>
+#include <errno.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/statvfs.h>
 
 #include "../util.h"
@@ -11,7 +12,7 @@ disk_free(const char *mnt)
 	struct statvfs fs;
 
 	if (statvfs(mnt, &fs) < 0) {
-		warn("Failed to get filesystem info");
+		fprintf(stderr, "statvfs '%s': %s\n", mnt, strerror(errno));
 		return NULL;
 	}
 
@@ -25,7 +26,7 @@ disk_perc(const char *mnt)
 	struct statvfs fs;
 
 	if (statvfs(mnt, &fs) < 0) {
-		warn("Failed to get filesystem info");
+		fprintf(stderr, "statvfs '%s': %s\n", mnt, strerror(errno));
 		return NULL;
 	}
 
@@ -40,7 +41,7 @@ disk_total(const char *mnt)
 	struct statvfs fs;
 
 	if (statvfs(mnt, &fs) < 0) {
-		warn("Failed to get filesystem info");
+		fprintf(stderr, "statvfs '%s': %s\n", mnt, strerror(errno));
 		return NULL;
 	}
 
@@ -53,7 +54,7 @@ disk_used(const char *mnt)
 	struct statvfs fs;
 
 	if (statvfs(mnt, &fs) < 0) {
-		warn("Failed to get filesystem info");
+		fprintf(stderr, "statvfs '%s': %s\n", mnt, strerror(errno));
 		return NULL;
 	}
 

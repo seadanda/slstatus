@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-#include <err.h>
+#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -13,7 +13,7 @@ run_command(const char *cmd)
 
 	fp = popen(cmd, "r");
 	if (fp == NULL) {
-		warn("Failed to get command output for %s", cmd);
+		fprintf(stderr, "popen '%s': %s\n", cmd, strerror(errno));
 		return NULL;
 	}
 	p = fgets(buf, sizeof(buf) - 1, fp);
