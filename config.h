@@ -53,10 +53,11 @@ static const struct arg args[] = {
 	/* function format          argument */
 	/*{ cpu_perc, "cpu %3s%% | ", NULL    },
 	{ ram_perc, "ram %2s%% | ", NULL    },*/
-    { hostname, "%s ", "wlp2s0"       },
-    { battery_perc, "%s%%", "BAT0"  },
-    { battery_state, "%s | ", "BAT0"    },
-    { wifi_essid, "%s ", "wlp2s0"     },
-    { ipv4, "%s | ", "wlp2s0"            },
-	{ datetime, "%s ",       "%F %T"    },
+    { hostname, "%s ", "wlp2s0"      },
+    { battery_perc, "%s%%", "BAT0"   },
+    { battery_state, "%s | ", "BAT0" },
+    { wifi_essid, "%s ", "wlp2s0"    },
+    { ipv4, "%s | ", "wlp2s0"        },
+    { run_command, "vol %s | ", "echo $(full=\"$(pulseaudio-ctl full-status)\";level=${full% *};if [[ \"${level#* }\" == \"yes\" ]];then echo \"--%\";else echo \"${level% *}%\";fi)" },
+	{ datetime, "%s ",       "%F %T" },
 };
